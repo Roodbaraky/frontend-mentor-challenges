@@ -1,46 +1,53 @@
-const passInput = document.getElementById("pass")
-const emailInput = document.getElementById("email")
-const firstNameInput = document.getElementById("fname")
-const lastNameInput = document.getElementById("lname")
-
-const passError = document.getElementById("pass-err")
-const emailError = document.getElementById("email-err")
-const firstNameError = document.getElementById("fname-err")
-const lastNameError = document.getElementById("lname-err")
 const form = document.getElementById("form");
-let isFormValid = false;
+const inputGroups = Array.from(document.querySelectorAll(".input-group"));
+const emailGroup = document.getElementById("email-group");
 
-const inputErrorPairs = [
-    {input: passInput, error: passError},
-    {input: emailInput, error: emailError},
-    {input: firstNameInput, error: firstNameError},
-    {input: lastNameInput, error: lastNameError},
-];
-const checkForEmptyInputs = () => {
-    inputErrorPairs.forEach(({input, error}) => {
-        if (input.value.trim() === "") isFormValid = false;
-        error.style.opacity = input.value.trim() === "" ? "1" : "0";
-    })
+function validateEmailFormat(value) {
+    return /^[^<>()[\]\\.,;:\s@\"]+(?:\.[^<>()[\]\\.,;:\s@\"]+)*@(?:\[?[0-9]{1,3}(?:\.[0-9]{1,3}){3}\]?|[a-zA-Z0-9-]+\.[a-zA-Z]{2,})$/.test(value);
 }
 
-inputErrorPairs.map(({input, error}) => {
-    input.addEventListener("blur", (e) => {
-            if (e.target.value.trim() === "") {
-                error.style.opacity = "1";
-            } else {
-                error.style.opacity = "0";
-            }
-        }
-    )
-})
+function validateGroup(group) {
+    const input = group.querySelector("input");
+    const label = group.querySelector("label");
+    const errorIcon = group.querySelector("img");
+    const errorText = group.querySelector("span");
+    const value = input.value.trim();
+    let valid = true;
 
+    if (value === "") {
+        errorIcon.style.opacity = "1";
+        errorText.innerText = `${label.innerText} is required`;
+        valid = false;
+    } else if (group === emailGroup && !validateEmailFormat(value.toLowerCase())) {
+        errorIcon.style.opacity = "1";
+        errorText.innerText = `${label.innerText} is invalid`;
+        valid = false;
+    } else {
+        errorIcon.style.opacity = "0";
+        errorText.innerText = "";
+    }
+
+    return valid;
+}
+
+inputGroups.forEach((group) => {
+    const input = group.querySelector("input");
+    input.addEventListener("blur", () => {
+        validateGroup(group);
+    });
+});
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    isFormValid = true;
-    inputErrorPairs.forEach(({input, error}) => {
-       checkForEmptyInputs();
-    })
-    if (isFormValid) e.target.submit();
-})
-;
+    let isFormValid = true;
+
+    inputGroups.forEach((group) => {
+        if (!validateGroup(group)) {
+            isFormValid = false;
+        }
+    });
+
+    if (isFormValid) {
+        form.submit();
+    }
+});

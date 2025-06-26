@@ -127,6 +127,16 @@ font-size: inherit;
     transition: 0.2s ease all;
 }
 
+.input-group span{
+    position: absolute;
+    right: 12px;
+    top: 42px;
+    font-size: x-small;
+    color: var(--primary-red);
+}
+
+
+
 .input-group input:focus + label,
 .input-group input:not(:placeholder-shown) + label {
     top: -8px;
