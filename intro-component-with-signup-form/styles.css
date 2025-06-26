@@ -116,6 +116,16 @@ font-size: inherit;
     pointer-events: none;
     transition: 0.2s ease all;
 }
+.input-group img {
+    opacity: 0;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: inherit;
+    color: #777;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
 
 .input-group input:focus + label,
 .input-group input:not(:placeholder-shown) + label {
