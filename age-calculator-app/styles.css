@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: "Poppins-Bold";
-    src: url("./assets/fonts/Poppins-BoldItalic.ttf");
+    src: url("./assets/fonts/Poppins-ExtraBoldItalic.ttf");
     font-weight: 800;
 }
 
@@ -26,9 +26,11 @@ body {
     display: flex;
     flex-direction: column;
     font-family: "Poppins", sans-serif;
+    height: 100dvh;
 }
 
 .container {
+    place-self: center;
     background-color: var(--white-neutral);
     margin: auto;
     align-self: center;
@@ -47,6 +49,15 @@ body {
     border-radius: 5px;
 }
 
+.birthday-form input {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border-color: var(--grey-neutral-200);
+    border: solid 1px;
+
+}
+
 .divider-w-btn {
     display: flex;
     align-items: center;
@@ -60,6 +71,7 @@ body {
     height: 1px;
     width: 80%;
     margin: 0;
+    pointer-events: none;
 }
 
 .icon-btn {
@@ -74,21 +86,35 @@ body {
     padding: 10px;
 }
 
+
+.icon-btn:active {
+    transform: scale(0.95);
+}
+
 .icon-btn img {
     width: 100%;
+    pointer-events: none;
+    user-select: none;
 }
 
 .output {
+    padding-left: 50px;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
     font-size: 5rem;
     font-family: "Poppins-Bold", sans-serif;
-
 }
 
-.output span {
+.span {
+    display: flex;
+}
+
+.output .num {
     font-size: 5rem;
     font-family: "Poppins-Bold", sans-serif;
     color: var(--purple-primary);
-
+    width: fit-content;
+    display: flex;
+    margin-right: 10px;
 }
