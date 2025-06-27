@@ -4,9 +4,13 @@
     font-weight: 400;
     font-style: normal;
 }
-
 @font-face {
     font-family: "Poppins-Bold";
+    src: url("./assets/fonts/Poppins-ExtraBold.ttf");
+    font-weight: 800;
+}
+@font-face {
+    font-family: "Poppins-Bold-Italic";
     src: url("./assets/fonts/Poppins-ExtraBoldItalic.ttf");
     font-weight: 800;
 }
@@ -35,28 +39,45 @@ body {
     margin: auto;
     align-self: center;
     justify-self: center;
-    width: fit-content;
+    width: 50rem;
     box-shadow: 0 5px 50px rgba(0, 0, 0, 0.15);
     border-radius: 10px 10px 200px 10px;
 
 }
 
 .birthday-form {
-    font-size: 32px;
     display: flex;
-    gap: 10px;
+    gap: 2.5rem;
     padding: 20px;
     border-radius: 5px;
+    font-size: 32px;
 }
 
-.birthday-form input {
+.input-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-block label {
+    font-size: 16px;
+    font-family: "Poppins-Bold", sans-serif;
+    color: var(--grey-neutral-500);
+    margin-bottom: 2px;
+}
+
+.input-block input {
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;
     border-color: var(--grey-neutral-200);
-    border: solid 1px;
-
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Poppins-Bold", sans-serif;
+    color:black;
+    width: 140px;
+    height: 50px;
 }
+
 
 .divider-w-btn {
     display: flex;
@@ -103,7 +124,7 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 5rem;
-    font-family: "Poppins-Bold", sans-serif;
+    font-family: "Poppins-Bold-Italic", sans-serif;
 }
 
 .span {
@@ -112,7 +133,7 @@ body {
 
 .output .num {
     font-size: 5rem;
-    font-family: "Poppins-Bold", sans-serif;
+    font-family: "Poppins-Bold-Italic", sans-serif;
     color: var(--purple-primary);
     width: fit-content;
     display: flex;

@@ -37,7 +37,6 @@ btn.addEventListener("click", () => {
         months += 12;
     }
     if (isValid) {
-        console.log("Valid, changing display...");
         yearSpan.innerText = years;
         monthSpan.innerText = months;
         daySpan.innerText = days;
@@ -58,23 +57,52 @@ function isYearValid(year) {
 
 dayInput.addEventListener("blur", () => {
     if (!isDayValid()) {
-        console.log("error");
         isValid = false;
-        //placeholder
-
     }
 })
 
 monthInput.addEventListener("blur", () => {
     if (!isMonthValid()) {
-        console.log("error");
         isValid = false;
     }
 })
 
 yearInput.addEventListener("blur", () => {
     if (!isYearValid()) {
-        console.log("error");
         isValid = false;
     }
+})
+
+dayInput.addEventListener("input", (e) => {
+    if (dayInput.value > 31) {
+        e.preventDefault();
+        dayInput.value = 31;
+    }
+    if (dayInput.value < 1) {
+        e.preventDefault();
+        dayInput.value = 1;
+    }
+})
+
+monthInput.addEventListener("input", (e) => {
+    if (monthInput.value > 12) {
+        e.preventDefault();
+        monthInput.value = 12;
+    }
+    if (monthInput.value < 1) {
+        e.preventDefault();
+        monthInput.value = 1;
+    }
+})
+
+yearInput.addEventListener("input", (e) => {
+    if (yearInput.value < 1900) {
+        e.preventDefault();
+        yearInput.value = 1900;
+    }
+    if (yearInput.value > currentDate.getFullYear()) {
+        e.preventDefault();
+        yearInput.value = currentDate.getFullYear();
+    }
+
 })
